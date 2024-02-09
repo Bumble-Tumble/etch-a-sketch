@@ -11,6 +11,23 @@
     <div class="container"></div>
 </body>
 <script>
+document.addEventListener('DOMContentLoaded', function() {
+    var container = document.querySelector('.container');
 
+    // Create 256 box elements
+    for (var x = 0; x < 256; x++) {
+        var box = document.createElement('div');
+        box.setAttribute('class', 'box');
+        container.appendChild(box);
+    }
+
+    // Add event listener to each box
+    var boxes = document.querySelectorAll('.box');
+    boxes.forEach(function(box) {
+        box.addEventListener('mouseover', function() {
+            box.style.backgroundColor = 'blue';
+        });
+    });
+});
 </script>
 </html>
