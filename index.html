@@ -8,14 +8,17 @@
     <link rel="stylesheet" type="text/css" href="styles.css" />
 </head>
 <body>
+    <button class="gridBtn"></button>
     <div class="container"></div>
 </body>
 <script>
+    gridNumber = 256;
+    var container = document.querySelector('.container');
 document.addEventListener('DOMContentLoaded', function() {
     var container = document.querySelector('.container');
 
-    // Create 256 box elements
-    for (var x = 0; x < 256; x++) {
+    // Create box elements
+    for (var x = 0; x < gridNumber; x++) {
         var box = document.createElement('div');
         box.setAttribute('class', 'box');
         container.appendChild(box);
@@ -29,5 +32,33 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+    // take user input to change grid size
+    gridBtn = document.querySelector('.gridBtn');
+    gridBtn.textContent = 'change grid size';
+    gridBtn.addEventListener('click', function(){
+    var newSize = prompt("Enter grid size", "16");
+    if (newSize !== null) {
+        gridNumber = parseInt(newSize ** 2);
+        
+        // Clear the existing grid
+        container.innerHTML = '';
+        
+        // Recreate the grid with the new size
+        for (var x = 0; x < gridNumber; x++) {
+            var box = document.createElement('div');
+            box.setAttribute('class', 'box');
+            container.appendChild(box);
+        }
+        container.style.width = parseInt(newSize) * 50 + 'px';
+
+        var boxes = document.querySelectorAll('.box');
+    boxes.forEach(function(box) {
+        box.addEventListener('mouseover', function() {
+            box.style.backgroundColor = 'blue';
+        });
+    });
+    }
+});
+
 </script>
 </html>
